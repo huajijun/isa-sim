@@ -150,6 +150,60 @@ device.cc.s:
 	$(MAKE) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/device.cc.s
 .PHONY : device.cc.s
 
+htif.o: htif.cc.o
+
+.PHONY : htif.o
+
+# target to build an object file
+htif.cc.o:
+	$(MAKE) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/htif.cc.o
+.PHONY : htif.cc.o
+
+htif.i: htif.cc.i
+
+.PHONY : htif.i
+
+# target to preprocess a source file
+htif.cc.i:
+	$(MAKE) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/htif.cc.i
+.PHONY : htif.cc.i
+
+htif.s: htif.cc.s
+
+.PHONY : htif.s
+
+# target to generate assembly for a file
+htif.cc.s:
+	$(MAKE) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/htif.cc.s
+.PHONY : htif.cc.s
+
+memif.o: memif.cc.o
+
+.PHONY : memif.o
+
+# target to build an object file
+memif.cc.o:
+	$(MAKE) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/memif.cc.o
+.PHONY : memif.cc.o
+
+memif.i: memif.cc.i
+
+.PHONY : memif.i
+
+# target to preprocess a source file
+memif.cc.i:
+	$(MAKE) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/memif.cc.i
+.PHONY : memif.cc.i
+
+memif.s: memif.cc.s
+
+.PHONY : memif.s
+
+# target to generate assembly for a file
+memif.cc.s:
+	$(MAKE) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/memif.cc.s
+.PHONY : memif.cc.s
+
 option_parser.o: option_parser.cc.o
 
 .PHONY : option_parser.o
@@ -176,6 +230,33 @@ option_parser.s: option_parser.cc.s
 option_parser.cc.s:
 	$(MAKE) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/option_parser.cc.s
 .PHONY : option_parser.cc.s
+
+sim.o: sim.cc.o
+
+.PHONY : sim.o
+
+# target to build an object file
+sim.cc.o:
+	$(MAKE) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/sim.cc.o
+.PHONY : sim.cc.o
+
+sim.i: sim.cc.i
+
+.PHONY : sim.i
+
+# target to preprocess a source file
+sim.cc.i:
+	$(MAKE) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/sim.cc.i
+.PHONY : sim.cc.i
+
+sim.s: sim.cc.s
+
+.PHONY : sim.s
+
+# target to generate assembly for a file
+sim.cc.s:
+	$(MAKE) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/sim.cc.s
+.PHONY : sim.cc.s
 
 spike.o: spike.cc.o
 
@@ -216,9 +297,18 @@ help:
 	@echo "... device.o"
 	@echo "... device.i"
 	@echo "... device.s"
+	@echo "... htif.o"
+	@echo "... htif.i"
+	@echo "... htif.s"
+	@echo "... memif.o"
+	@echo "... memif.i"
+	@echo "... memif.s"
 	@echo "... option_parser.o"
 	@echo "... option_parser.i"
 	@echo "... option_parser.s"
+	@echo "... sim.o"
+	@echo "... sim.i"
+	@echo "... sim.s"
 	@echo "... spike.o"
 	@echo "... spike.i"
 	@echo "... spike.s"

@@ -62,7 +62,7 @@ public:
         const char *default_bootargs,
         const char *default_isa, const char *default_priv,
         const char *default_varch,
-//        const std::vector<mem_cfg_t> &default_mem_layout,
+        const std::vector<mem_cfg_t> &default_mem_layout,
         const std::vector<int> default_hartids,
         bool default_real_time_clint)
     : initrd_bounds(default_initrd_bounds),
@@ -70,7 +70,7 @@ public:
       isa(default_isa),
       priv(default_priv),
       varch(default_varch),
-//      mem_layout(default_mem_layout),
+      mem_layout(default_mem_layout),
       hartids(default_hartids),
       explicit_hartids(false),
       real_time_clint(default_real_time_clint)
@@ -81,7 +81,7 @@ public:
   cfg_arg_t<const char *>            isa;
   cfg_arg_t<const char *>            priv;
   cfg_arg_t<const char *>            varch;
-//  cfg_arg_t<std::vector<mem_cfg_t>>  mem_layout;
+  cfg_arg_t<std::vector<mem_cfg_t>>  mem_layout;
 //  std::optional<reg_t>               start_pc;
   cfg_arg_t<std::vector<int>>        hartids;
   bool                               explicit_hartids;
@@ -89,6 +89,58 @@ public:
 
   size_t nprocs() const { return hartids().size(); }
 };
+
+
+static std::vector<mem_cfg_t> parse_mem_layout(const char* arg)
+{
+  std::vector<mem_cfg_t> res;
+
+  // handle legacy mem argument
+  char* p;
+  auto mb = strtoull(arg, &p, 0);
+  if (*p == 0) {
+    reg_t size = reg_t(mb) << 20;
+    if (size != (size_t)size)
+      throw std::runtime_error("Size would overflow size_t");
+    res.push_back(mem_cfg_t(reg_t(DRAM_BASE), size));
+    return res;
+  }
+
+  // handle base/size tuples
+  while (true) {
+    auto base = strtoull(arg, &p, 0);
+	if (!*p || *p != ':')
+		return res; 
+    auto size = strtoull(p + 1, &p, 0);
+
+    // page-align base and size
+    auto base0 = base, size0 = size;
+    size += base0 % PGSIZE;
+    base -= base0 % PGSIZE;
+    if (size % PGSIZE != 0)
+      size += PGSIZE - size % PGSIZE;
+
+	if (base + size < base)
+		return res;
+
+    if (size != size0) {
+      fprintf(stderr, "Warning: the memory at  [0x%llX, 0x%llX] has been realigned\n"
+                      "to the %ld KiB page size: [0x%llX, 0x%llX]\n",
+              base0, base0 + size0 - 1, long(PGSIZE / 1024), base, base + size - 1);
+    }
+
+    res.push_back(mem_cfg_t(reg_t(base), reg_t(size)));
+    if (!*p)
+      break;
+	if (*p != ',')
+		return res; 
+    arg = p + 1;
+  }
+
+ // merge_overlapping_memory_regions(res);
+
+  return res;
+}
 
 
 static std::vector<std::pair<reg_t, mem_t*>> make_mems(const std::vector<mem_cfg_t> &layout)
@@ -132,63 +184,11 @@ int main(int argc, char** argv)
             /*default_isa=*/DEFAULT_ISA,
             /*default_priv=*/DEFAULT_PRIV,
             /*default_varch=*/DEFAULT_VARCH,
-//            /*default_mem_layout=*/parse_mem_layout("2048"),
+            /*default_mem_layout=*/parse_mem_layout("2048"),
             /*default_hartids=*/std::vector<int>(),
             /*default_real_time_clint=*/false);
 
 
-
-
-static std::vector<mem_cfg_t> parse_mem_layout(const char* arg)
-{
-  std::vector<mem_cfg_t> res;
-
-  // handle legacy mem argument
-  char* p;
-  auto mb = strtoull(arg, &p, 0);
-  if (*p == 0) {
-    reg_t size = reg_t(mb) << 20;
-    if (size != (size_t)size)
-      throw std::runtime_error("Size would overflow size_t");
-    res.push_back(mem_cfg_t(reg_t(DRAM_BASE), size));
-    return res;
-  }
-
-  // handle base/size tuples
-  while (true) {
-    auto base = strtoull(arg, &p, 0);
-	if (!*p || *p != ':')
-		return;
-    auto size = strtoull(p + 1, &p, 0);
-
-    // page-align base and size
-    auto base0 = base, size0 = size;
-    size += base0 % PGSIZE;
-    base -= base0 % PGSIZE;
-    if (size % PGSIZE != 0)
-      size += PGSIZE - size % PGSIZE;
-
-	if (base + size < base)
-		return;
-
-    if (size != size0) {
-      fprintf(stderr, "Warning: the memory at  [0x%llX, 0x%llX] has been realigned\n"
-                      "to the %ld KiB page size: [0x%llX, 0x%llX]\n",
-              base0, base0 + size0 - 1, long(PGSIZE / 1024), base, base + size - 1);
-    }
-
-    res.push_back(mem_cfg_t(reg_t(base), reg_t(size)));
-    if (!*p)
-      break;
-	if (*p != ',')
-		return;
-    arg = p + 1;
-  }
-
- // merge_overlapping_memory_regions(res);
-
-  return res;
-}
   option_parser_t parser;
 //  parser.help(&suggest_help);
 //  parser.option('h', "help", 0, [&](const char* s){help(0);});

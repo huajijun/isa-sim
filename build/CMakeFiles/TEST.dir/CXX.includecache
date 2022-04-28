@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/work/isa-sim/memif.cc
+memif.h
+/work/isa-sim/memif.h
+algorithm
+-
+stdlib.h
+-
+string.h
+-
+
+/work/isa-sim/memif.h
+stdint.h
+-
+stddef.h
+-
+

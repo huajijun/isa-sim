@@ -32,5 +32,5 @@ public:
 	virtual void WriteInt8(addr_t addr, int8_t val);
 protected:
 	ChunkedMemif * cmemIf;
-}
+};
 #endif

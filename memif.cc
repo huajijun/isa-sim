@@ -2,7 +2,7 @@
 
 #include <algorithm>
 #include <stdlib.h>
-#include <string>
+#include <string.h>
 
 void MemIf::Read(addr_t addr, size_t len, void* bytes) {
 	size_t align = cmemIf->ChunkAlign();
@@ -46,14 +46,10 @@ void MemIf::Write(addr_t addr, size_t len, const void* bytes) {
 }
 
 #define MEMIF_READ_FUNC \
-	if(addr & (sizeof(val)-1)) \
-		return	\
 	this->Read(addr,sizeof(val),&val); \
 	return val
 
 #define MEMIF_WRITE_FUNC \
-	if(addr & (sizeof(val)-1)) \
-		return \
 	this->Write(addr, sizeof(val), &val)
 	
 
@@ -67,4 +63,12 @@ int8_t MemIf::ReadInt8(addr_t addr) {
 	MEMIF_READ_FUNC;
 }
 
+
+void MemIf::WriteUint8(addr_t addr, uint8_t val) {
+	MEMIF_WRITE_FUNC;
+}
+
+void MemIf::WriteInt8(addr_t addr, int8_t val) {
+	MEMIF_WRITE_FUNC;
+}
 //void MemIf::WriteUint8
