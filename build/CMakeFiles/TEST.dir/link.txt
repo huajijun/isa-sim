@@ -1,1 +1,0 @@
-/usr/bin/g++     CMakeFiles/TEST.dir/device.cc.o CMakeFiles/TEST.dir/option_parser.cc.o CMakeFiles/TEST.dir/spike.cc.o  -o TEST 

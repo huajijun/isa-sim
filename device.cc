@@ -1,5 +1,6 @@
 #include "device.h"
 #include "common.h"
+#include <algorithm>
 
 mem_t::mem_t(reg_t size)
   : sz(size)

@@ -4,7 +4,7 @@
 #include <string>
 #include <memory>
 #include <fstream>
-#include <optional>
+//nclude <optional>
 #include "device.h"
 #include "common.h"
 #include "option_parser.h"
@@ -112,12 +112,10 @@ int main(int argc, char** argv)
   bool socket = false;  // command line option -s
   bool dump_dts = false;
   bool dtb_enabled = true;
+  uint64_t ddr_size = 0x100000000;
   const char* kernel = NULL;
   reg_t kernel_offset, kernel_size;
   std::vector<std::pair<reg_t, abstract_device_t*>> plugin_devices;
-  // std::unique_ptr<icache_sim_t> ic;
-  // std::unique_ptr<dcache_sim_t> dc;
-  // std::unique_ptr<cache_sim_t> l2;
 
   bool log_cache = false;
   bool log_commits = false;
@@ -139,6 +137,58 @@ int main(int argc, char** argv)
             /*default_real_time_clint=*/false);
 
 
+
+
+static std::vector<mem_cfg_t> parse_mem_layout(const char* arg)
+{
+  std::vector<mem_cfg_t> res;
+
+  // handle legacy mem argument
+  char* p;
+  auto mb = strtoull(arg, &p, 0);
+  if (*p == 0) {
+    reg_t size = reg_t(mb) << 20;
+    if (size != (size_t)size)
+      throw std::runtime_error("Size would overflow size_t");
+    res.push_back(mem_cfg_t(reg_t(DRAM_BASE), size));
+    return res;
+  }
+
+  // handle base/size tuples
+  while (true) {
+    auto base = strtoull(arg, &p, 0);
+	if (!*p || *p != ':')
+		return;
+    auto size = strtoull(p + 1, &p, 0);
+
+    // page-align base and size
+    auto base0 = base, size0 = size;
+    size += base0 % PGSIZE;
+    base -= base0 % PGSIZE;
+    if (size % PGSIZE != 0)
+      size += PGSIZE - size % PGSIZE;
+
+	if (base + size < base)
+		return;
+
+    if (size != size0) {
+      fprintf(stderr, "Warning: the memory at  [0x%llX, 0x%llX] has been realigned\n"
+                      "to the %ld KiB page size: [0x%llX, 0x%llX]\n",
+              base0, base0 + size0 - 1, long(PGSIZE / 1024), base, base + size - 1);
+    }
+
+    res.push_back(mem_cfg_t(reg_t(base), reg_t(size)));
+    if (!*p)
+      break;
+	if (*p != ',')
+		return;
+    arg = p + 1;
+  }
+
+ // merge_overlapping_memory_regions(res);
+
+  return res;
+}
   option_parser_t parser;
 //  parser.help(&suggest_help);
 //  parser.option('h', "help", 0, [&](const char* s){help(0);});
@@ -146,7 +196,7 @@ int main(int argc, char** argv)
   parser.option('g', 0, 0, [&](const char* s){histogram = true;});
   parser.option('l', 0, 0, [&](const char* s){log = true;});
   // parser.option('p', 0, 1, [&](const char* s){nprocs = atoul_nonzero_safe(s);});
-  // parser.option('m', 0, 1, [&](const char* s){cfg.mem_layout = parse_mem_layout(s);});
+  parser.option('m', 0, 1, [&](const char* s){cfg.mem_layout = parse_mem_layout(s);});
   // // I wanted to use --halted, but for some reason that doesn't work.
   // parser.option('H', 0, 0, [&](const char* s){halted = true;});
   // parser.option(0, "rbb-port", 1, [&](const char* s){use_rbb = true; rbb_port = atoul_safe(s);});
@@ -217,6 +267,10 @@ int main(int argc, char** argv)
 
   auto argv1 = parser.parse(argv);
   std::vector<std::string> htif_args(argv1, (const char*const*)argv + argc);
+
+
+
+
 
   return 0;
 }

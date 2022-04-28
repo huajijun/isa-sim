@@ -1,0 +1,50 @@
+﻿  Building Custom Rule D:/isa-sim/isa-sim/CMakeLists.txt
+  device.cc
+  htif.cc
+  memif.cc
+D:\vs2015\VC\include\yvals.h(592): error C2628: “MemIf”后面接“long”是非法的(是否忘记了“;”?)
+D:\vs2015\VC\include\xiosbase(632): warning C4251: “std::ios_base::_Prec”: class“MemIf”需要有 dll 接口由 class“std::ios_base”的客户端使用
+  d:\isa-sim\isa-sim\memif.h(20): note: 参见“MemIf”的声明
+D:\vs2015\VC\include\xiosbase(633): warning C4251: “std::ios_base::_Wide”: class“MemIf”需要有 dll 接口由 class“std::ios_base”的客户端使用
+  d:\isa-sim\isa-sim\memif.h(20): note: 参见“MemIf”的声明
+D:\vs2015\VC\include\xiosbase(534): error C2512: “MemIf”: 没有合适的默认构造函数可用
+  d:\isa-sim\isa-sim\memif.h(20): note: 参见“MemIf”的声明
+D:\vs2015\VC\include\xiosbase(543): error C2679: 二进制“=”: 没有找到接受“int”类型的右操作数的运算符(或没有可接受的转换)
+  d:\isa-sim\isa-sim\memif.h(35): note: 可能是“MemIf &MemIf::operator =(const MemIf &)”
+  D:\vs2015\VC\include\xiosbase(543): note: 尝试匹配参数列表“(std::streamsize, int)”时
+D:\vs2015\VC\include\istream(890): warning C4251: “std::basic_istream<char,std::char_traits<char>>::_Chcount”: class“MemIf”需要有 dll 接口由 class“std::basic_istream<char,std::char_traits<char>>”的客户端使用
+  d:\isa-sim\isa-sim\memif.h(20): note: 参见“MemIf”的声明
+  D:\vs2015\VC\include\istream(923): note: 参见对正在编译的类 模板 实例化“std::basic_istream<char,std::char_traits<char>>”的引用
+D:\vs2015\VC\include\istream(890): warning C4251: “std::basic_istream<wchar_t,std::char_traits<wchar_t>>::_Chcount”: class“MemIf”需要有 dll 接口由 class“std::basic_istream<wchar_t,std::char_traits<wchar_t>>”的客户端使用
+  d:\isa-sim\isa-sim\memif.h(20): note: 参见“MemIf”的声明
+  D:\vs2015\VC\include\istream(924): note: 参见对正在编译的类 模板 实例化“std::basic_istream<wchar_t,std::char_traits<wchar_t>>”的引用
+D:\isa-sim\isa-sim\memif.cc(11): error C2131: 表达式的计算结果不是常数
+  D:\isa-sim\isa-sim\memif.cc(11): note: 非常量参数或对非常量符号的引用导致了故障
+  D:\isa-sim\isa-sim\memif.cc(11): note: 请参见“align”的用法
+D:\isa-sim\isa-sim\memif.cc(23): error C2131: 表达式的计算结果不是常数
+  D:\isa-sim\isa-sim\memif.cc(23): note: 非常量参数或对非常量符号的引用导致了故障
+  D:\isa-sim\isa-sim\memif.cc(23): note: 请参见“align”的用法
+D:\isa-sim\isa-sim\memif.cc(62): error C2440: “return”: 无法从“void”转换为“uint8_t”
+  D:\isa-sim\isa-sim\memif.cc(62): note: void 类型的表达式不能转换为其他类型
+D:\isa-sim\isa-sim\memif.cc(67): error C2440: “return”: 无法从“void”转换为“int8_t”
+  D:\isa-sim\isa-sim\memif.cc(67): note: void 类型的表达式不能转换为其他类型
+  option_parser.cc
+  sim.cc
+  spike.cc
+D:\isa-sim\isa-sim\spike.cc(143): error C2267: “parse_mem_layout”: 具有块范围的静态函数非法
+D:\isa-sim\isa-sim\spike.cc(143): error C2601: “parse_mem_layout”: 本地函数定义是非法的
+  D:\isa-sim\isa-sim\spike.cc(107): note: 此行有一个“{”没有匹配项
+D:\isa-sim\isa-sim\spike.cc(199): error C2039: “mem_layout”: 不是“cfg_t”的成员
+  D:\isa-sim\isa-sim\spike.cc(59): note: 参见“cfg_t”的声明
+D:\isa-sim\isa-sim\spike.cc(199): error C2039: “__this”: 不是“cfg_t”的成员
+  D:\isa-sim\isa-sim\spike.cc(59): note: 参见“cfg_t”的声明
+D:\isa-sim\isa-sim\spike.cc(153): error C2065: “DRAM_BASE”: 未声明的标识符
+D:\isa-sim\isa-sim\spike.cc(153): error C2440: “<function-style-cast>”: 无法从“reg_t”转换为“mem_cfg_t”
+  D:\isa-sim\isa-sim\spike.cc(153): note: 无构造函数可以接受源类型，或构造函数重载决策不明确
+D:\isa-sim\isa-sim\spike.cc(161): error C2561: “parse_mem_layout”: 函数必须返回值
+  D:\isa-sim\isa-sim\spike.cc(142): note: 参见“parse_mem_layout”的声明
+D:\isa-sim\isa-sim\spike.cc(172): error C2561: “parse_mem_layout”: 函数必须返回值
+  D:\isa-sim\isa-sim\spike.cc(142): note: 参见“parse_mem_layout”的声明
+D:\isa-sim\isa-sim\spike.cc(184): error C2561: “parse_mem_layout”: 函数必须返回值
+  D:\isa-sim\isa-sim\spike.cc(142): note: 参见“parse_mem_layout”的声明
+  正在生成代码...
