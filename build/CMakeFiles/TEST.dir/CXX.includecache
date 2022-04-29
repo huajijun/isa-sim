@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/work/isa-sim/htif.cc
+Htif.h
+/work/isa-sim/Htif.h
+
 /work/isa-sim/memif.cc
 memif.h
 /work/isa-sim/memif.h
@@ -21,4 +25,10 @@ stdint.h
 -
 stddef.h
 -
+
+/work/isa-sim/sim.cc
+sim.h
+/work/isa-sim/sim.h
+
+/work/isa-sim/sim.h
 
