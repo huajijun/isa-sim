@@ -1,7 +1,10 @@
 #ifndef _RISCV_SIMIF_H_
 #define _RISCV_SIMIF_H_
+#include <stdint.h>
+#include <stdlib.h>
 typedef int64_t sreg_t;
 typedef uint64_t reg_t;
+
 
 class SimIf {
 public:
@@ -14,5 +17,5 @@ public:
 	virtual const char* get_symbol(uint64_t addr) = 0;
 
 
-}
+};
 #endif

@@ -2,12 +2,13 @@
 #define _HTIF_H_
 
 #include "memif.h"
-
+#include <vector>
+#include <string>
 class Htif : public  ChunkedMemif {
 public:
 	Htif();
 	Htif(int argc, char** argv);
-	Htif(const std::std::vector<string>& args);
+	Htif(const std::vector<std::string>& args);
 	virtual ~Htif();
 
 private:

@@ -3,6 +3,8 @@
 #include <map>
 #include <vector>
 #include <utility>
+#include <cstring>
+#include "common.h"
 #include "abstract_device.h"
 
 
@@ -23,7 +25,7 @@ public:
 	RomDevice(std::vector<char> data);
 	bool load(reg_t addr, size_t len , uint8_t *bytes);
 	bool store(reg_t addr, size_t len, const uint8_t* bytes);
-	const std::std::vector<char>& contents() {return data;}
+	const std::vector<char>& contents() {return data;}
 private:
 	std::vector<char> data;
 };

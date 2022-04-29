@@ -1,11 +1,12 @@
-#include "Htif.h"
+#include "htif.h"
+#include "common.h"
 Htif::Htif()
 	:mem(this), entry(DRAM_BASE),tohost_addr(0),fromhost_addr(0)
 	{
 
 	}
 
-Htif::Htif(const std::std::vector<string>& args) : Htif()
+Htif::Htif(const std::vector<std::string>& args) : Htif()
 {
 	int argc = args.size() + 1;
 	char * argv[argc];

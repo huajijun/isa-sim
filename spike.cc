@@ -1,11 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <vector>
-#include <string>
-#include <memory>
-#include <fstream>
+
 //nclude <optional>
-#include "device.h"
+#include "devices.h"
 #include "common.h"
 #include "option_parser.h"
 
@@ -13,82 +8,8 @@ using namespace std;
 
 
 
-template <typename T>
-class cfg_arg_t {
-public:
-  cfg_arg_t(T default_val)
-    : value(default_val), was_set(false) {}
 
-  bool overridden() const { return was_set; }
 
-  T operator()() const { return value; }
-
-  T operator=(const T v) {
-    value = v;
-    was_set = true;
-    return value;
-  }
-
-private:
-  T value;
-  bool was_set;
-};
-
-class mem_cfg_t
-{
-public:
-  mem_cfg_t(reg_t base, reg_t size)
-    : base(base), size(size)
-  {
-    // The truth of these assertions should be ensured by whatever is creating
-    // the regions in the first place, but we have them here to make sure that
-    // we can't end up describing memory regions that don't make sense. They
-    // ask that the page size is a multiple of the minimum page size, that the
-    // page is aligned to the minimum page size, that the page is non-empty and
-    // that the top address is still representable in a reg_t.
-    assert((size % PGSIZE == 0) &&
-           (base % PGSIZE == 0) &&
-           (base + size > base));
-  }
-
-  reg_t base;
-  reg_t size;
-};
-
-class cfg_t
-{
-public:
-  cfg_t(std::pair<reg_t, reg_t> default_initrd_bounds,
-        const char *default_bootargs,
-        const char *default_isa, const char *default_priv,
-        const char *default_varch,
-        const std::vector<mem_cfg_t> &default_mem_layout,
-        const std::vector<int> default_hartids,
-        bool default_real_time_clint)
-    : initrd_bounds(default_initrd_bounds),
-      bootargs(default_bootargs),
-      isa(default_isa),
-      priv(default_priv),
-      varch(default_varch),
-      mem_layout(default_mem_layout),
-      hartids(default_hartids),
-      explicit_hartids(false),
-      real_time_clint(default_real_time_clint)
-  {}
-
-  cfg_arg_t<std::pair<reg_t, reg_t>> initrd_bounds;
-  cfg_arg_t<const char *>            bootargs;
-  cfg_arg_t<const char *>            isa;
-  cfg_arg_t<const char *>            priv;
-  cfg_arg_t<const char *>            varch;
-  cfg_arg_t<std::vector<mem_cfg_t>>  mem_layout;
-//  std::optional<reg_t>               start_pc;
-  cfg_arg_t<std::vector<int>>        hartids;
-  bool                               explicit_hartids;
-  cfg_arg_t<bool>                    real_time_clint;
-
-  size_t nprocs() const { return hartids().size(); }
-};
 
 
 static std::vector<mem_cfg_t> parse_mem_layout(const char* arg)
@@ -143,12 +64,12 @@ static std::vector<mem_cfg_t> parse_mem_layout(const char* arg)
 }
 
 
-static std::vector<std::pair<reg_t, mem_t*>> make_mems(const std::vector<mem_cfg_t> &layout)
+static std::vector<std::pair<reg_t, Mem*>> make_mems(const std::vector<mem_cfg_t> &layout)
 {
-  std::vector<std::pair<reg_t, mem_t*>> mems;
+  std::vector<std::pair<reg_t, Mem*>> mems;
   mems.reserve(layout.size());
   for (const auto &cfg : layout) {
-    mems.push_back(std::make_pair(cfg.base, new mem_t(cfg.size)));
+    mems.push_back(std::make_pair(cfg.base, new Mem(cfg.size)));
   }
   return mems;
 }
@@ -167,7 +88,7 @@ int main(int argc, char** argv)
   uint64_t ddr_size = 0x100000000;
   const char* kernel = NULL;
   reg_t kernel_offset, kernel_size;
-  std::vector<std::pair<reg_t, abstract_device_t*>> plugin_devices;
+  std::vector<std::pair<reg_t, AbstractDevice*>> plugin_devices;
 
   bool log_cache = false;
   bool log_commits = false;
