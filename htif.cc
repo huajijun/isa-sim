@@ -19,6 +19,11 @@ Htif::Htif(const std::vector<std::string>& args) : Htif()
 	ParseArguments(argc,argv);
 }
 
+
+Htif::~Htif()
+{
+
+}
 void Htif::ParseArguments(int argc, char** argv) {
 	/*
 	*Description:

@@ -6,12 +6,13 @@
 #include "devices.h"
 #include "proccessor.h"
 #include "mmu.h"
+
 class Sim: public Htif, public SimIf {
 public:
 	Sim(const cfg_t *cfg, bool halted,
         std::vector<std::pair<reg_t, Mem*>> mems,
         const std::vector<std::string>& args);
-	~Sim();
+	~Sim(){};
 
 
 private:

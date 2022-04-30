@@ -1,6 +1,7 @@
 #include "mmu.h"
-#include <string>
-#include <memory>
+mmu_t::mmu_t(SimIf* sim, processor_t* proc): sim(sim),proc(proc){
+
+}
 bool mmu_t::mmio_load(reg_t addr, size_t len, uint8_t* bytes) {
 	return sim->mmio_load(addr, len, bytes);
 }
