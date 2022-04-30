@@ -3,14 +3,10 @@
 #include "devices.h"
 #include "common.h"
 #include "option_parser.h"
+#include "sim.h"
+#include "devices.h"
 
 using namespace std;
-
-
-
-
-
-
 
 static std::vector<mem_cfg_t> parse_mem_layout(const char* arg)
 {
@@ -111,24 +107,12 @@ int main(int argc, char** argv)
 
 
   option_parser_t parser;
-//  parser.help(&suggest_help);
-//  parser.option('h', "help", 0, [&](const char* s){help(0);});
   parser.option('d', 0, 0, [&](const char* s){debug = true;});
   parser.option('g', 0, 0, [&](const char* s){histogram = true;});
   parser.option('l', 0, 0, [&](const char* s){log = true;});
-  // parser.option('p', 0, 1, [&](const char* s){nprocs = atoul_nonzero_safe(s);});
+
   parser.option('m', 0, 1, [&](const char* s){cfg.mem_layout = parse_mem_layout(s);});
-  // // I wanted to use --halted, but for some reason that doesn't work.
-  // parser.option('H', 0, 0, [&](const char* s){halted = true;});
-  // parser.option(0, "rbb-port", 1, [&](const char* s){use_rbb = true; rbb_port = atoul_safe(s);});
-  // parser.option(0, "pc", 1, [&](const char* s){cfg.start_pc = strtoull(s, 0, 0);});
-  // parser.option(0, "hartids", 1, [&](const char* s){
-  //   cfg.hartids = parse_hartids(s);
-  //   cfg.explicit_hartids = true;
-  // });
-  // parser.option(0, "ic", 1, [&](const char* s){ic.reset(new icache_sim_t(s));});
-  // parser.option(0, "dc", 1, [&](const char* s){dc.reset(new dcache_sim_t(s));});
- // parser.option(0, "l2", 1, [&](const char* s){l2.reset(cache_sim_t::construct(s, "L2$"));});
+
   parser.option(0, "log-cache-miss", 0, [&](const char* s){log_cache = true;});
   parser.option(0, "isa", 1, [&](const char* s){cfg.isa = s;});
   parser.option(0, "priv", 1, [&](const char* s){cfg.priv = s;});
@@ -142,54 +126,16 @@ int main(int argc, char** argv)
   parser.option(0, "initrd", 1, [&](const char* s){initrd = s;});
   parser.option(0, "bootargs", 1, [&](const char* s){cfg.bootargs = s;});
   parser.option(0, "real-time-clint", 0, [&](const char *s){cfg.real_time_clint = true;});
-  // parser.option(0, "extlib", 1, [&](const char *s){
-  //   void *lib = dlopen(s, RTLD_NOW | RTLD_GLOBAL);
-  //   if (lib == NULL) {
-  //     fprintf(stderr, "Unable to load extlib '%s': %s\n", s, dlerror());
-  //     exit(-1);
-  //   }
-  // });
-  // parser.option(0, "dm-progsize", 1,
-  //     [&](const char* s){dm_config.progbufsize = atoul_safe(s);});
-  // parser.option(0, "dm-no-impebreak", 0,
-  //     [&](const char* s){dm_config.support_impebreak = false;});
-  // parser.option(0, "dm-sba", 1,
-  //     [&](const char* s){dm_config.max_sba_data_width = atoul_safe(s);});
-  // parser.option(0, "dm-auth", 0,
-  //     [&](const char* s){dm_config.require_authentication = true;});
-  // parser.option(0, "dmi-rti", 1,
-  //     [&](const char* s){dmi_rti = atoul_safe(s);});
-  // parser.option(0, "dm-abstract-rti", 1,
-  //     [&](const char* s){dm_config.abstract_rti = atoul_safe(s);});
-  // parser.option(0, "dm-no-hasel", 0,
-  //     [&](const char* s){dm_config.support_hasel = false;});
-  // parser.option(0, "dm-no-abstract-csr", 0,
-  //     [&](const char* s){dm_config.support_abstract_csr_access = false;});
-  // parser.option(0, "dm-no-halt-groups", 0,
-  //     [&](const char* s){dm_config.support_haltgroups = false;});
+
   parser.option(0, "log-commits", 0,
                 [&](const char* s){log_commits = true;});
-  // parser.option(0, "log", 1,
-  //               [&](const char* s){log_path = s;});
-  // FILE *cmd_file = NULL;
-  // parser.option(0, "debug-cmd", 1, [&](const char* s){
-  //    if ((cmd_file = fopen(s, "r"))==NULL) {
-  //       fprintf(stderr, "Unable to open command file '%s'\n", s);
-  //       exit(-1);
-  //    }
-  // });
-  // parser.option(0, "blocksz", 1, [&](const char* s){
-  //   blocksz = strtoull(s, 0, 0);
-  //   if (((blocksz & (blocksz - 1))) != 0) {
-  //     fprintf(stderr, "--blocksz should be power of 2\n");
-  //     exit(-1);
-  //   }
-  // });
+
 
   auto argv1 = parser.parse(argv);
   std::vector<std::string> htif_args(argv1, (const char*const*)argv + argc);
+  std::vector<std::pair<reg_t, Mem*>> mems = make_mems(cfg.mem_layout());
 
-
+  Sim  S(&cfg,false,mems,htif_args);
 
 
 

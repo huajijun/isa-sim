@@ -25,5 +25,15 @@ private:
 
 	char* addr_to_mem(reg_t addr);
 	bool mmio_store(reg_t addr, size_t len, const uint8_t* bytes);
+	bool mmio_load(reg_t addr, size_t len, uint8_t* bytes);
+	void proc_reset(unsigned id);
+	const char* get_symbol(uint64_t addr);
+
+	void ReadChunk(addr_t addr, size_t len, void* dst); // 从addr读取数据到dst
+	void WriteChunk(addr_t addr, size_t len, const void* src);
+	void ClearChunk(addr_t addr, size_t len);
+
+	size_t ChunkAlign();
+	size_t ChunkMaxSize();
 };
 #endif

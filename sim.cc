@@ -22,8 +22,60 @@ char* Sim::addr_to_mem(reg_t addr) {
 	return NULL;
 }
 
+
+
+
+
+
 bool Sim::mmio_store(reg_t addr, size_t len, const uint8_t* bytes) {
 	if (addr + len < addr)
 		return false;
 	return bus.store(addr, len, bytes);
+}
+
+
+bool Sim::mmio_load(reg_t addr, size_t len, uint8_t* bytes) 
+{ 
+	return false; 
+}
+	// Callback for processors to let the simulation know they were reset.
+void Sim::proc_reset(unsigned id) {
+
+}
+
+const char* Sim::get_symbol(uint64_t addr) { 
+	return NULL; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+void Sim::ReadChunk(addr_t addr, size_t len, void* dst) 
+{
+
+}
+void Sim::WriteChunk(addr_t addr, size_t len, const void* src) 
+{
+
+}
+void Sim::ClearChunk(addr_t addr, size_t len)
+{
+
+}
+
+size_t Sim::ChunkAlign() 
+{
+	return 0;
+}
+size_t Sim::ChunkMaxSize() 
+{
+	return 0;
 }

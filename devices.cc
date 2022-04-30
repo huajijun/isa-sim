@@ -1,5 +1,5 @@
 #include "devices.h"
-#include <string>
+
 void bus_t::add_device(reg_t addr, AbstractDevice* dev) {
 	devices[addr] = dev;
 }
