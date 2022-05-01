@@ -1,0 +1,3 @@
+/work/isa-sim/build/CMakeFiles/rebuild_cache.dir
+/work/isa-sim/build/CMakeFiles/edit_cache.dir
+/work/isa-sim/build/CMakeFiles/run.dir
