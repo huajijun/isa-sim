@@ -32,7 +32,7 @@ char* Sim::addr_to_mem(reg_t addr) {
 int Sim::run() {
 	host = context_t::current();
 	target.init(sim_thread_main,this);
-	return 0;
+	return Htif::run();
 }
 
 
@@ -59,7 +59,7 @@ const char* Sim::get_symbol(uint64_t addr) {
 
 void Sim::main()
 {
-
+	
 }
 
 

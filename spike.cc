@@ -6,6 +6,7 @@
 #include "sim.h"
 #include "devices.h"
 
+
 using namespace std;
 
 static std::vector<mem_cfg_t> parse_mem_layout(const char* arg)
@@ -138,6 +139,8 @@ int main(int argc, char** argv)
   Sim  S(&cfg,false,mems,htif_args);
 
   S.run();
+
+
 
   return 0;
 }

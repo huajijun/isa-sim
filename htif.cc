@@ -1,5 +1,48 @@
 #include "htif.h"
 #include "common.h"
+#include <unistd.h>
+
+
+std::map<std::string, uint64_t> Htif::load_payload(const std::string& payload, reg_t* entry) {
+	std::string path;
+	if (access(payload.c_str(), F_OK) == 0)
+		path = payload;
+	else {
+
+	}
+	if (path.empty()) {
+
+	}
+	class preload_aware_memif_t : public MemIf {
+	public:
+		preload_aware_memif_t(Htif* htif) : MemIf(htif), htif(htif) {}
+
+		void Write(addr_t addr, size_t len, const void* bytes) override {
+			MemIf::Write(addr, len, bytes);
+		}
+
+		private:
+			Htif* htif;
+	}preload_aware_memif(this);
+
+	return load_elf(path.c_str(), &preload_aware_memif, entry);
+}
+void Htif::load_program(){
+	std::map<std::string, uint64_t> symbols = load_payload(targs[0], &entry);
+}
+
+void Htif::start()
+{
+	if (targs[0] != "none")
+		load_program();
+}
+
+int Htif::run()
+{
+	start();
+
+}
+
 Htif::Htif()
 	:mem(this), entry(DRAM_BASE),tohost_addr(0),fromhost_addr(0)
 	{
