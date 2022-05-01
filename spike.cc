@@ -137,7 +137,7 @@ int main(int argc, char** argv)
 
   Sim  S(&cfg,false,mems,htif_args);
 
-
+  S.run();
 
   return 0;
 }

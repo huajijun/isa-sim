@@ -4,8 +4,8 @@ set (CMAKE_CXX_COMPILER "/usr/bin/g++")
 add_compile_options( -fpermissive -g -std=c++17)
 project(OUTPUT VERSION 1.0)
 aux_source_directory(${PROJECT_SOURCE_DIR}/ DIR_SRCS)
-add_executable(TEST ${DIR_SRCS})
-target_include_directories(TEST PUBLIC 
+add_executable(run ${DIR_SRCS})
+target_include_directories(run PUBLIC 
                 "${PROJECT_SOURCE_DIR}"
                             )
 

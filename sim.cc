@@ -1,5 +1,11 @@
 #include "sim.h"
 #include "mmu.h"
+
+void sim_thread_main(void* arg)
+{
+	(((Sim*)arg)->main());
+}
+
 Sim::Sim(const cfg_t *cfg, bool halted,
         std::vector<std::pair<reg_t, Mem*>> mems,
         const std::vector<std::string>& args)
@@ -23,7 +29,11 @@ char* Sim::addr_to_mem(reg_t addr) {
 }
 
 
-
+int Sim::run() {
+	host = context_t::current();
+	target.init(sim_thread_main,this);
+	return 0;
+}
 
 
 
@@ -47,7 +57,10 @@ const char* Sim::get_symbol(uint64_t addr) {
 	return NULL; 
 }
 
+void Sim::main()
+{
 
+}
 
 
 

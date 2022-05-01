@@ -6,6 +6,7 @@
 #include "devices.h"
 #include "proccessor.h"
 #include "mmu.h"
+#include "context.h"
 
 class Sim: public Htif, public SimIf {
 public:
@@ -14,7 +15,7 @@ public:
         const std::vector<std::string>& args);
 	~Sim(){};
 
-
+	int run();
 private:
 //	isa_parser_t isa;
 	const cfg_t * const cfg;
@@ -22,6 +23,10 @@ private:
 	mmu_t* debug_mmu;  // debug port into main memory
 	std::vector<processor_t*> procs;
 	bus_t bus;
+
+
+	context_t* host;
+	context_t target;
 
 	char* addr_to_mem(reg_t addr);
 	bool mmio_store(reg_t addr, size_t len, const uint8_t* bytes);
@@ -35,5 +40,8 @@ private:
 
 	size_t ChunkAlign();
 	size_t ChunkMaxSize();
+
+	friend void sim_thread_main(void*);
+	void main();
 };
 #endif
