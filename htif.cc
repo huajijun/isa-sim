@@ -1,7 +1,18 @@
 #include "htif.h"
 #include "common.h"
 #include <unistd.h>
-
+#include <algorithm>
+#include <assert.h>
+#include <vector>
+#include <queue>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
+#include <stdio.h>
+#include <unistd.h>
+#include <signal.h>
+#include <getopt.h>
 
 std::map<std::string, uint64_t> Htif::load_payload(const std::string& payload, reg_t* entry) {
 	std::string path;
@@ -33,13 +44,19 @@ void Htif::load_program(){
 
 void Htif::start()
 {
-	if (targs[0] != "none")
+	if (!targs.empty() && (targs[0] != "none"))
 		load_program();
+
+	reset();
 }
 
 int Htif::run()
 {
 	start();
+	if (tohost_addr == 0) {
+		while(true)
+			idle();
+	}
 
 }
 

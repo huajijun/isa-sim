@@ -140,7 +140,7 @@ int main(int argc, char** argv)
 
   S.run();
 
-
+  while(1);
 
   return 0;
 }

@@ -57,9 +57,22 @@ include CMakeFiles/run.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/run.dir/flags.make
 
+CMakeFiles/run.dir/addi.cc.o: CMakeFiles/run.dir/flags.make
+CMakeFiles/run.dir/addi.cc.o: ../addi.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/run.dir/addi.cc.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/addi.cc.o -c /work/isa-sim/addi.cc
+
+CMakeFiles/run.dir/addi.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/addi.cc.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /work/isa-sim/addi.cc > CMakeFiles/run.dir/addi.cc.i
+
+CMakeFiles/run.dir/addi.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/addi.cc.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /work/isa-sim/addi.cc -o CMakeFiles/run.dir/addi.cc.s
+
 CMakeFiles/run.dir/context.cc.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/context.cc.o: ../context.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/run.dir/context.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/run.dir/context.cc.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/context.cc.o -c /work/isa-sim/context.cc
 
 CMakeFiles/run.dir/context.cc.i: cmake_force
@@ -70,9 +83,22 @@ CMakeFiles/run.dir/context.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/context.cc.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /work/isa-sim/context.cc -o CMakeFiles/run.dir/context.cc.s
 
+CMakeFiles/run.dir/decode.cc.o: CMakeFiles/run.dir/flags.make
+CMakeFiles/run.dir/decode.cc.o: ../decode.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/run.dir/decode.cc.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/decode.cc.o -c /work/isa-sim/decode.cc
+
+CMakeFiles/run.dir/decode.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/decode.cc.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /work/isa-sim/decode.cc > CMakeFiles/run.dir/decode.cc.i
+
+CMakeFiles/run.dir/decode.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/decode.cc.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /work/isa-sim/decode.cc -o CMakeFiles/run.dir/decode.cc.s
+
 CMakeFiles/run.dir/devices.cc.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/devices.cc.o: ../devices.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/run.dir/devices.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/run.dir/devices.cc.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/devices.cc.o -c /work/isa-sim/devices.cc
 
 CMakeFiles/run.dir/devices.cc.i: cmake_force
@@ -85,7 +111,7 @@ CMakeFiles/run.dir/devices.cc.s: cmake_force
 
 CMakeFiles/run.dir/htif.cc.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/htif.cc.o: ../htif.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/run.dir/htif.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/run.dir/htif.cc.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/htif.cc.o -c /work/isa-sim/htif.cc
 
 CMakeFiles/run.dir/htif.cc.i: cmake_force
@@ -98,7 +124,7 @@ CMakeFiles/run.dir/htif.cc.s: cmake_force
 
 CMakeFiles/run.dir/memif.cc.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/memif.cc.o: ../memif.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/run.dir/memif.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/run.dir/memif.cc.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/memif.cc.o -c /work/isa-sim/memif.cc
 
 CMakeFiles/run.dir/memif.cc.i: cmake_force
@@ -111,7 +137,7 @@ CMakeFiles/run.dir/memif.cc.s: cmake_force
 
 CMakeFiles/run.dir/mmu.cc.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/mmu.cc.o: ../mmu.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/run.dir/mmu.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/run.dir/mmu.cc.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/mmu.cc.o -c /work/isa-sim/mmu.cc
 
 CMakeFiles/run.dir/mmu.cc.i: cmake_force
@@ -124,7 +150,7 @@ CMakeFiles/run.dir/mmu.cc.s: cmake_force
 
 CMakeFiles/run.dir/option_parser.cc.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/option_parser.cc.o: ../option_parser.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/run.dir/option_parser.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/run.dir/option_parser.cc.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/option_parser.cc.o -c /work/isa-sim/option_parser.cc
 
 CMakeFiles/run.dir/option_parser.cc.i: cmake_force
@@ -135,9 +161,22 @@ CMakeFiles/run.dir/option_parser.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/option_parser.cc.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /work/isa-sim/option_parser.cc -o CMakeFiles/run.dir/option_parser.cc.s
 
+CMakeFiles/run.dir/parseElf.cc.o: CMakeFiles/run.dir/flags.make
+CMakeFiles/run.dir/parseElf.cc.o: ../parseElf.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/run.dir/parseElf.cc.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/parseElf.cc.o -c /work/isa-sim/parseElf.cc
+
+CMakeFiles/run.dir/parseElf.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/parseElf.cc.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /work/isa-sim/parseElf.cc > CMakeFiles/run.dir/parseElf.cc.i
+
+CMakeFiles/run.dir/parseElf.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/parseElf.cc.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /work/isa-sim/parseElf.cc -o CMakeFiles/run.dir/parseElf.cc.s
+
 CMakeFiles/run.dir/processor.cc.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/processor.cc.o: ../processor.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/run.dir/processor.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/run.dir/processor.cc.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/processor.cc.o -c /work/isa-sim/processor.cc
 
 CMakeFiles/run.dir/processor.cc.i: cmake_force
@@ -150,7 +189,7 @@ CMakeFiles/run.dir/processor.cc.s: cmake_force
 
 CMakeFiles/run.dir/sim.cc.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/sim.cc.o: ../sim.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/run.dir/sim.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/run.dir/sim.cc.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/sim.cc.o -c /work/isa-sim/sim.cc
 
 CMakeFiles/run.dir/sim.cc.i: cmake_force
@@ -163,7 +202,7 @@ CMakeFiles/run.dir/sim.cc.s: cmake_force
 
 CMakeFiles/run.dir/spike.cc.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/spike.cc.o: ../spike.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/run.dir/spike.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/run.dir/spike.cc.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/spike.cc.o -c /work/isa-sim/spike.cc
 
 CMakeFiles/run.dir/spike.cc.i: cmake_force
@@ -176,12 +215,15 @@ CMakeFiles/run.dir/spike.cc.s: cmake_force
 
 # Object files for target run
 run_OBJECTS = \
+"CMakeFiles/run.dir/addi.cc.o" \
 "CMakeFiles/run.dir/context.cc.o" \
+"CMakeFiles/run.dir/decode.cc.o" \
 "CMakeFiles/run.dir/devices.cc.o" \
 "CMakeFiles/run.dir/htif.cc.o" \
 "CMakeFiles/run.dir/memif.cc.o" \
 "CMakeFiles/run.dir/mmu.cc.o" \
 "CMakeFiles/run.dir/option_parser.cc.o" \
+"CMakeFiles/run.dir/parseElf.cc.o" \
 "CMakeFiles/run.dir/processor.cc.o" \
 "CMakeFiles/run.dir/sim.cc.o" \
 "CMakeFiles/run.dir/spike.cc.o"
@@ -189,18 +231,21 @@ run_OBJECTS = \
 # External object files for target run
 run_EXTERNAL_OBJECTS =
 
+run: CMakeFiles/run.dir/addi.cc.o
 run: CMakeFiles/run.dir/context.cc.o
+run: CMakeFiles/run.dir/decode.cc.o
 run: CMakeFiles/run.dir/devices.cc.o
 run: CMakeFiles/run.dir/htif.cc.o
 run: CMakeFiles/run.dir/memif.cc.o
 run: CMakeFiles/run.dir/mmu.cc.o
 run: CMakeFiles/run.dir/option_parser.cc.o
+run: CMakeFiles/run.dir/parseElf.cc.o
 run: CMakeFiles/run.dir/processor.cc.o
 run: CMakeFiles/run.dir/sim.cc.o
 run: CMakeFiles/run.dir/spike.cc.o
 run: CMakeFiles/run.dir/build.make
 run: CMakeFiles/run.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable run"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/work/isa-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable run"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/run.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

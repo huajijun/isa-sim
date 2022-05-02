@@ -17,6 +17,7 @@ Sim::Sim(const cfg_t *cfg, bool halted,
 		bus.add_device(it.first, it.second);
 
 	debug_mmu = new mmu_t(this,NULL);
+	procs[0] = new processor_t(this);
 }
 
 char* Sim::addr_to_mem(reg_t addr) {
@@ -59,9 +60,13 @@ const char* Sim::get_symbol(uint64_t addr) {
 
 void Sim::main()
 {
-	
+	step(50000);
 }
 
+void Sim::step(size_t n)
+{
+
+}
 
 
 
@@ -91,4 +96,18 @@ size_t Sim::ChunkAlign()
 size_t Sim::ChunkMaxSize() 
 {
 	return 0;
+}
+
+void Sim::set_rom() 
+{
+	/* need do*/
+}
+void Sim::reset()
+{
+	set_rom();
+}
+
+void Sim::idle()
+{
+	target.switch_to();
 }

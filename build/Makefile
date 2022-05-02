@@ -123,6 +123,33 @@ run/fast:
 	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/build
 .PHONY : run/fast
 
+addi.o: addi.cc.o
+
+.PHONY : addi.o
+
+# target to build an object file
+addi.cc.o:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/addi.cc.o
+.PHONY : addi.cc.o
+
+addi.i: addi.cc.i
+
+.PHONY : addi.i
+
+# target to preprocess a source file
+addi.cc.i:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/addi.cc.i
+.PHONY : addi.cc.i
+
+addi.s: addi.cc.s
+
+.PHONY : addi.s
+
+# target to generate assembly for a file
+addi.cc.s:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/addi.cc.s
+.PHONY : addi.cc.s
+
 context.o: context.cc.o
 
 .PHONY : context.o
@@ -149,6 +176,33 @@ context.s: context.cc.s
 context.cc.s:
 	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/context.cc.s
 .PHONY : context.cc.s
+
+decode.o: decode.cc.o
+
+.PHONY : decode.o
+
+# target to build an object file
+decode.cc.o:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/decode.cc.o
+.PHONY : decode.cc.o
+
+decode.i: decode.cc.i
+
+.PHONY : decode.i
+
+# target to preprocess a source file
+decode.cc.i:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/decode.cc.i
+.PHONY : decode.cc.i
+
+decode.s: decode.cc.s
+
+.PHONY : decode.s
+
+# target to generate assembly for a file
+decode.cc.s:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/decode.cc.s
+.PHONY : decode.cc.s
 
 devices.o: devices.cc.o
 
@@ -285,6 +339,33 @@ option_parser.cc.s:
 	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/option_parser.cc.s
 .PHONY : option_parser.cc.s
 
+parseElf.o: parseElf.cc.o
+
+.PHONY : parseElf.o
+
+# target to build an object file
+parseElf.cc.o:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/parseElf.cc.o
+.PHONY : parseElf.cc.o
+
+parseElf.i: parseElf.cc.i
+
+.PHONY : parseElf.i
+
+# target to preprocess a source file
+parseElf.cc.i:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/parseElf.cc.i
+.PHONY : parseElf.cc.i
+
+parseElf.s: parseElf.cc.s
+
+.PHONY : parseElf.s
+
+# target to generate assembly for a file
+parseElf.cc.s:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/parseElf.cc.s
+.PHONY : parseElf.cc.s
+
 processor.o: processor.cc.o
 
 .PHONY : processor.o
@@ -375,9 +456,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... run"
+	@echo "... addi.o"
+	@echo "... addi.i"
+	@echo "... addi.s"
 	@echo "... context.o"
 	@echo "... context.i"
 	@echo "... context.s"
+	@echo "... decode.o"
+	@echo "... decode.i"
+	@echo "... decode.s"
 	@echo "... devices.o"
 	@echo "... devices.i"
 	@echo "... devices.s"
@@ -393,6 +480,9 @@ help:
 	@echo "... option_parser.o"
 	@echo "... option_parser.i"
 	@echo "... option_parser.s"
+	@echo "... parseElf.o"
+	@echo "... parseElf.i"
+	@echo "... parseElf.s"
 	@echo "... processor.o"
 	@echo "... processor.i"
 	@echo "... processor.s"

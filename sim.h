@@ -43,5 +43,10 @@ private:
 
 	friend void sim_thread_main(void*);
 	void main();
+	void reset();
+	void set_rom();
+	void idle();
+
+	void step(size_t n);
 };
 #endif

@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <map>
+#include "parseElf.h"
 class Htif : public  ChunkedMemif {
 public:
 	Htif();
@@ -25,6 +26,7 @@ private:
 	std::vector<std::string> targs;
 	virtual void load_program();
 	virtual std::map<std::string, uint64_t> load_payload(const std::string& payload, reg_t* entry);
-
+	virtual void reset() = 0;
+	virtual void idle() {}
 };
 #endif 
