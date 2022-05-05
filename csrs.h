@@ -29,6 +29,7 @@ class  mip_csr_t :public mip_or_mie_csr_t {
 public:
 	mip_csr_t(processor_t* const proc, const reg_t addr);
 	virtual reg_t write_mask() const noexcept override;
+	reg_t read(){}
 };
 
 

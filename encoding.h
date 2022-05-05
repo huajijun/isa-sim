@@ -29,6 +29,8 @@
 #define MATCH_ADDI 0x13
 #define MASK_ADDI  0x707f
 
+#ifdef DECLARE_INSN
 DECLARE_INSN(addi, MATCH_ADDI, MASK_ADDI)
+#endif
 
 #endif

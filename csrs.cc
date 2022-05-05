@@ -1,5 +1,5 @@
 #include "csrs.h"
-
+#include "proccessor.h"
 csr_t::csr_t(processor_t* const proc, const reg_t addr):
   proc(proc),
   state(proc->get_state()),

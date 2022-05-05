@@ -113,6 +113,7 @@ public:
 	processor_t(SimIf* sim);
 	~processor_t(){};
 	state_t* get_state() { return &state; }
+	void step(size_t n);
 private:
 	SimIf* sim;
 	mmu_t* mmu;
@@ -126,8 +127,7 @@ private:
 	insn_desc_t opcode_cache[OPCODE_CACHE_SIZE];
 	bool load(reg_t addr, size_t len , uint8_t *bytes);
 	bool store(reg_t addr, size_t len, const uint8_t* bytes);
-	void step(size_t n);
-	void execute_insn(processor_t* , reg_t, insn_fetch_t) {}
+	
 
 
 

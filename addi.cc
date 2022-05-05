@@ -3,8 +3,10 @@
 #include "encoding.h"
 reg_t rv32i_addi(processor_t* p, insn_t insn, reg_t pc)
 {
+  #define xlen 32
 	reg_t npc = sext_xlen(pc + insn_length( MATCH_ADDI));
 	#include "addi.h"
+  #undef xlen
 	return npc;
 }
 

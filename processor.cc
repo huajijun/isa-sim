@@ -3,6 +3,14 @@
 #include <cstring>
 #include <algorithm>
 #include "mmu.h"
+
+
+static inline reg_t execute_insn(processor_t* p, reg_t pc, insn_fetch_t fetch) {
+  reg_t npc;
+  npc = fetch.func(p, fetch.insn, pc);
+
+  return npc;
+}
 reg_t illegal_instruction(processor_t* p, insn_t insn, reg_t pc)
 {
 	return 0;
@@ -16,11 +24,20 @@ void processor_t::register_insn(insn_desc_t desc) {
 }
 
 void processor_t::register_base_instructions() {
-	#define DECLARE_INSN(name, match, mask) \
-		insn_bits_t name##_match = (match), name##_mask = (mask); \
-		bool name##_supported = true;
-	#include "encoding.h"
-	#undef DECLARE_INSN
+ #define DECLARE_INSN(name, match, mask) \
+    insn_bits_t name##_match = (match), name##_mask = (mask); \
+    bool name##_supported = true;
+
+  #include "encoding.h"
+  #undef DECLARE_INSN
+
+
+
+	// #define DECLARE_INSN(name, match, mask) \
+	// 	insn_bits_t name##_match = (match), name##_mask = (mask); \
+	// 	bool name##_supported = true;
+	// #include "encoding.h"
+	// #undef DECLARE_INSN
 
 	#define DEFINE_INSN(name) \
     extern reg_t rv32i_##name(processor_t*, insn_t, reg_t); \
@@ -68,7 +85,6 @@ bool processor_t::load(reg_t addr, size_t len, uint8_t* bytes)
       }
       break;
   }
-
   return false;
 }
 
@@ -93,7 +109,7 @@ void processor_t::step(size_t n){
     mmu_t* _mmu = mmu;
     insn_fetch_t fetch = mmu->load_insn(pc);
 
-    pc = execute_insn(this, pc, fetch);
+    pc = execute_insn(this, pc, fetch); // 这里需要重点添加
   }
 }
 
