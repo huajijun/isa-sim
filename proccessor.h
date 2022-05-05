@@ -5,6 +5,7 @@
 #include "common.h"
 #include "SimIf.h"
 #include "abstract_device.h"
+#include "csrs.h"
 
 #define IRQ_U_SOFT   0
 #define IRQ_S_SOFT   1
@@ -111,6 +112,7 @@ class processor_t : public AbstractDevice {
 public:
 	processor_t(SimIf* sim);
 	~processor_t(){};
+	state_t* get_state() { return &state; }
 private:
 	SimIf* sim;
 	mmu_t* mmu;
@@ -124,6 +126,9 @@ private:
 	insn_desc_t opcode_cache[OPCODE_CACHE_SIZE];
 	bool load(reg_t addr, size_t len , uint8_t *bytes);
 	bool store(reg_t addr, size_t len, const uint8_t* bytes);
+	void step(size_t n);
+	void execute_insn(processor_t* , reg_t, insn_fetch_t) {}
+
 
 
 };

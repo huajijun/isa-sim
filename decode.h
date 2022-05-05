@@ -7,6 +7,8 @@ typedef uint64_t freg_t;
 typedef uint64_t insn_bits_t;
 const int NXPR = 32;
 const int NFPR = 32;
+
+#define READ_REG(reg) ({STATE.XPR[reg]; })
 #define sext_xlen(x) (((sreg_t)(x) << (64 - xlen)) >> (64 - xlen))
 
 #define get_field(reg, mask) (((reg) & (decltype(reg))(mask)) / ((mask) & ~((mask) << 1)))

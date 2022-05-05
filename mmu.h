@@ -16,6 +16,13 @@ const reg_t PGMASK = ~(PGSIZE1-1);
 # define   likely(x) (x)
 # define unlikely(x) (x)
 
+struct insn_fetch_t
+{
+  insn_func_t func;
+  insn_t insn;
+};
+
+
 enum access_type {
   LOAD,
   STORE,
@@ -26,6 +33,15 @@ struct tlb_entry_t {
 	char* host_offset;
 	reg_t target_offset;
 };
+
+struct icache_entry_t {
+  reg_t tag;
+  struct icache_entry_t* next;
+  insn_fetch_t data;
+};
+
+
+
 
 class mmu_t {
 private:
@@ -89,6 +105,50 @@ public:
 	load_func(uint16, load, 0)
 	load_func(uint32, load, 0)
 	load_func(uint64, load, 0)
+
+
+	inline icache_entry_t* refill_icache(reg_t addr, icache_entry_t* entry)
+	{
+		// auto tlb_entry = translate_insn_addr(addr);
+		// insn_bits_t insn = from_le(*(uint16_t*)(tlb_entry.host_offset + addr));
+		// int length = insn_length(insn);
+
+		// if (likely(length == 4)) {
+		//   insn |= (insn_bits_t)from_le(*(const int16_t*)translate_insn_addr_to_host(addr + 2)) << 16;
+		// } else if (length == 2) {
+		//   insn = (int16_t)insn;
+		// } else if (length == 6) {
+		//   insn |= (insn_bits_t)from_le(*(const int16_t*)translate_insn_addr_to_host(addr + 4)) << 32;
+		//   insn |= (insn_bits_t)from_le(*(const uint16_t*)translate_insn_addr_to_host(addr + 2)) << 16;
+		// } else {
+		//   static_assert(sizeof(insn_bits_t) == 8, "insn_bits_t must be uint64_t");
+		//   insn |= (insn_bits_t)from_le(*(const int16_t*)translate_insn_addr_to_host(addr + 6)) << 48;
+		//   insn |= (insn_bits_t)from_le(*(const uint16_t*)translate_insn_addr_to_host(addr + 4)) << 32;
+		//   insn |= (insn_bits_t)from_le(*(const uint16_t*)translate_insn_addr_to_host(addr + 2)) << 16;
+		// }
+
+		// insn_fetch_t fetch = {proc->decode_insn(insn), insn};
+		// entry->tag = addr;
+		// entry->next = &icache[icache_index(addr + length)];
+		// entry->data = fetch;
+
+		// reg_t paddr = tlb_entry.target_offset + addr;;
+		// if (tracer.interested_in_range(paddr, paddr + 1, FETCH)) {
+		//   entry->tag = -1;
+		//   tracer.trace(paddr, length, FETCH);
+		// }
+		return entry;
+	}
+
+
+
+	inline insn_fetch_t load_insn(reg_t addr)
+	{
+		icache_entry_t entry;
+		return refill_icache(addr, &entry)->data;
+	}
+
+
 
 };
 #endif

@@ -2,6 +2,7 @@
 #include "decode.h"
 #include <cstring>
 #include <algorithm>
+#include "mmu.h"
 reg_t illegal_instruction(processor_t* p, insn_t insn, reg_t pc)
 {
 	return 0;
@@ -77,12 +78,22 @@ bool processor_t::store(reg_t addr, size_t len, const uint8_t* bytes)
   {
     case 0:
       if (len <= 4) {
-        state.mip->write_with_mask(MIP_MSIP, bytes[0] << IRQ_M_SOFT);
+        //state.mip->write_with_mask(MIP_MSIP, bytes[0] << IRQ_M_SOFT);
         return true;
       }
       break;
   }
 
   return false;
+}
+
+void processor_t::step(size_t n){
+  while(n) {
+    reg_t pc = state.pc;
+    mmu_t* _mmu = mmu;
+    insn_fetch_t fetch = mmu->load_insn(pc);
+
+    pc = execute_insn(this, pc, fetch);
+  }
 }
 

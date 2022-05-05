@@ -65,7 +65,8 @@ void Sim::main()
 
 void Sim::step(size_t n)
 {
-
+	size_t steps = 1;
+	procs[current_proc]->step(steps);
 }
 
 

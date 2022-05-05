@@ -24,6 +24,8 @@ private:
 	std::vector<processor_t*> procs;
 	bus_t bus;
 
+	size_t current_proc;
+
 
 	context_t* host;
 	context_t target;
